@@ -7,15 +7,25 @@ class Config
 	private $db_password = "root";
 	private $db_name = "gestioncomposant";
 	
-	public function connect()
+	
+	public function getServer()
 	{
-		$l = mysql_connect($this->server,$this->db_login,$this->db_password);
-		mysql_select_db($this->db_name);
+		return $this->server;
 	}
 	
-	public function disconnect()
+	public function getLogin()
 	{
-		mysql_close();
+		return $this->db_login;
+	}
+	
+	public function getPass()
+	{
+		return $this->db_password;
+	}
+	
+	public function getDb()
+	{
+		return $this->db_name;
 	}
 	
 }

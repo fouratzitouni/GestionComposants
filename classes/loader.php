@@ -24,6 +24,7 @@ class Loader
 		{
 			$this->action = $this->params["action"];
 		}
+		session_start();
 	}
 	
 	public function createController()

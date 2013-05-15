@@ -20,7 +20,7 @@ class AdminModel extends DbModel
 	public function login($login,$pass,$cb)
 	{
 		
-		$this->c->connect();
+		$this->connect();
 		$query=mysql_query("select * from admin where login='$login' AND pwd='$pass'");
 		$rows = mysql_num_rows($query);
 		if($rows==1)
@@ -30,9 +30,45 @@ class AdminModel extends DbModel
 			{
 				setcookie('username',$login,time()+3600);
 			}
+			return true;
 			
 		}
-		header("location: /admin/index");
+		else
+		{
+			return false;
+		}
+		$this->disconnect();
+	}
+	
+	public function isPwdCorrect($login,$pass)
+	{
+		$this->connect();
+		$query=mysql_query("select * from admin where login='$login' AND pwd='$pass'");
+		$rows = mysql_num_rows($query);
+		if($rows==1)
+		{ 
+			return true;
+			
+		}
+		else
+		{
+			return false;
+		}
+		$this->disconnect();
+	}
+	
+	public function editAdmin($login,$nom,$mdp,$email)
+	{
+		$this->connect();
+		$q=mysql_query("UPDATE admin SET pwd = '$mdp', nom = '$nom', email = '$email' WHERE login = '$login' ;");
+		return($q);
+	}
+	
+	public function addRP($nom,$login,$mdp,$email)
+	{
+		$this->connect();
+		$q=mysql_query("INSERT INTO responsableprojet VALUES(default,'$nom','$login','$mdp','$email');");
+		return($q);
 	}
 	
 }
