@@ -125,8 +125,8 @@ class AdminController extends MainController
 		{
 			setcookie('username',$_COOKIE['username'],time()-3600);
 		}
-		$this->action = "index";
-		$this->index();
+		$this->action = "login";
+		$this->login();
 	}
 	
 	public function addrp()

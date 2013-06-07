@@ -2,7 +2,7 @@
 <html>
 <head>
 <title><?php echo $pageTitle; ?></title>
-<link rel="stylesheet" href="style/adminlogin.css" />
+<link rel="stylesheet" href="http://localhost/GestionComposants/style/adminlogin.css" />
 
 </head>
 
