@@ -83,7 +83,7 @@ class AdminController extends MainController
 	{
 		$pageTitle = "Authentification Administrateur";
 		$this->view = new View(get_class($this),$this->action);
-		$this->view->show($pageTitle);
+		$this->view->show($pageTitle,"adminlogintemplate");
 	}
 	
 	public function auth()

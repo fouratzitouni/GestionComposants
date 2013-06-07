@@ -30,7 +30,7 @@ class RpController extends MainController
 	{
 		$pageTitle = "Authentification Responsable Projet";
 		$this->view = new View(get_class($this),$this->action);
-		$this->view->show($pageTitle);
+		$this->view->show($pageTitle,"rplogintemplate");
 	}
 	
 	public function isConnected()
@@ -86,6 +86,65 @@ class RpController extends MainController
 		}
 		$this->action = "index";
 		$this->index();
+	}
+	
+	public function ajoutcl()
+	{
+		if(!$_POST)
+		{
+			$pageTitle = "Ajouter un Composant logiciel";
+			$this->view = new View(get_class($this),$this->action);
+			$this->view->show($pageTitle);
+		}
+		else
+		{
+			$type = $_POST["type"];
+			$nature = $_POST["nature"];
+			$licence = $_POST["licence"];
+			$cout = $_POST["cout"];
+			$version = $_POST["version"];
+			$rp = $this->model->getId($_SESSION['rpusername']);
+			
+			if($this->model->insertCL($type,$nature,$licence,$cout,$rp,$version))
+			{
+				$this->action = "index";
+				$this->index();
+			}
+			
+		}
+	}
+	
+	public function ajoutpl()
+	{
+		if(!$_POST)
+		{
+			$pageTitle = "Ajouter un Produit logiciel";
+			$this->view = new View(get_class($this),$this->action);
+			$this->view->show($pageTitle);
+		}
+		else
+		{
+			$type = $_POST["type"];
+			$nature = $_POST["nature"];
+			$licence = $_POST["licence"];
+			$cout = $_POST["cout"];
+			$version = $_POST["version"];
+			$rp = $this->model->getId($_SESSION['rpusername']);
+			$client = $_POST["client"];
+			$titre = $_POST["titre"];
+			$etat = $_POST["etat"];
+			
+			if($this->model->insertPL($type,$nature,$licence,$cout,$rp,$version,$client,$titre,$etat))
+			{
+				$this->action = "index";
+				$this->index();
+			}
+			
+		}
+	}
+	
+	public function getMyPL($id)
+	{
 	}
 }
 ?>

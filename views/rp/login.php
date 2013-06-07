@@ -1,5 +1,6 @@
 <h2>Authentification Responsable Projet</h2>
 	<form method="post" action="http://localhost/GestionComposants/rp/auth">
+    <div id="box">
 	<p>Entrer votre login : </p>
 		<input type="text" name="login" id="login">
 	
@@ -11,5 +12,7 @@
 	<br/><br/><input type="submit" value="Se connecter" name="valid" id="valid">
 	
 	<br/><br/>
+    </div>
+    </form>
 <script language="javascript" src="scripts/jquery-1.9.1.js"></script>
 

@@ -31,5 +31,50 @@ class RpModel extends DbModel
 		$this->disconnect();
 	}
 
+	public function getId($login)
+	{
+		$this->connect();
+		$query=mysql_query("select id from responsableprojet where login='$login';");
+		$l = mysql_fetch_array($query);
+		if($l)
+		{
+			return $l["id"];
+		}
+		else
+		{
+			return 0;
+		}
+		$this->disconnect();
+	}
+	
+	public function insertCL($type,$nature,$licence,$cout,$rp,$version)
+	{
+		$this->connect();
+		$query=mysql_query("INSERT INTO composantlogiciel VALUES (default,'$type','$nature','$licence','$cout','$rp','$version')");
+		if(!mysql_error())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		$this->disconnect();
+	}
+	
+	public function insertPL($type,$nature,$licence,$cout,$rp,$version,$client,$titre,$etat)
+	{
+		$this->connect();
+		$query=mysql_query("INSERT INTO produitlogiciel VALUES  (default,'$titre','$type','$nature','$client',$cout,'$licence','Termine',$rp,default,$version);") or die(mysql_error());
+		if(!mysql_error())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		$this->disconnect();
+	}
 }
 ?>
